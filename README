@@ -24,6 +24,10 @@ git checkout main
 # push -f is not recommended when: 
   # repo is public, so other people might have pulled, which would break their connection with origin
   # commits might be deleted
+# push origin -f is required when previously commited files are edited. Adding a fresh new file has no effect because there is no conflict? 
+# Git doesn't like it when local is different to remote. Which one is the "new" one?
+# Following best practice, I would have to create a new branch before every new addition/modification is made. Could be unrealistic... 
+# What happens to files outside of terminal when I change branches? How would file explorer know which branch I am on?
 
 # Step 1: create a new branch
 git checkout -b dev
