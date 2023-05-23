@@ -1,3 +1,4 @@
+## Branching
 # I wonder if this is really needed if the local branch is automatically called main.
 git branch -M main
 
@@ -18,4 +19,38 @@ git push origin feature
 # I can change branches, which changes the committed files.
 git checkout main
 
-# This README is only visible from feature branch, not main (both locally, and remotely (origin))
+## Merging
+# To avoid git push -f origin main to sync remote to local, I have to use git merge.
+# push -f is not recommended when: 
+  # repo is public, so other people might have pulled, which would break their connection with origin
+  # commits might be deleted
+
+# Step 1: create a new branch
+git checkout -b dev
+
+# Step 2: make changes and commit
+git add . 
+git commit -m "Development"
+
+# Step 3: changes are saved to dev branch. Now go back to main before merging
+git checkout main
+
+# Step 4: merge
+git merge dev
+
+# Step 5: now the dev branch is redundant
+git branch -d dev
+
+# Step 5: push
+git push origin main
+
+## When the local branch is not syncing with remote branch
+# Go to local feature branch
+git checkout feature 
+
+# This does the trick
+git reset --hard origin/feature
+
+## Removing a branch both locally and remotely
+git branch -d feature
+git push origin --delete feature
