@@ -1,23 +1,34 @@
 ## Branching
 I wonder if this is really needed if the local branch is automatically called main.  
-`git branch -M main`
-
-`git remote add`
+```
+git branch -M main
+git remote add
+```
 
 This creates a remote (also called origin) "main" from my local main branch   
-`git push -u origin main`
+```
+git push -u origin main
+```
 
 I can create and load a local branch where I can make changes  
-`git checkout -b feature`
+```
+git checkout -b feature
+```
 
 Check which branch I am on  
-`git branch`
+```
+git branch
+```
 
 This pushes my local feature branch into remote (origin) with the same branch name, feature.  
-`git push origin feature`
+```
+git push origin feature
+```
 
 I can change branches, which changes the committed files.  
-`git checkout main`
+```
+git checkout main
+```
 
 ## Merging
 To avoid git push -f origin main to sync remote to local, I have to use git merge.  
@@ -35,7 +46,9 @@ The file explorer DOES know which branch I am on. Git is actually adding/removin
 But this could still get confusing. I would have to constantly check if I'm on the right branch when I look for files. 
 
 Step 1: create a new branch  
-`git checkout -b dev`
+```
+git checkout -b dev
+```
 
 Step 2: make changes and commit  
 ```
@@ -43,27 +56,40 @@ git add .
 git commit -m "Development"
 ```
 Step 3: changes are saved to dev branch. Now go back to main before merging  
-`git checkout main`
+```
+git checkout main
+```
 
 Step 4: merge  
-`git merge dev`
+```
+git merge dev
+```
 
 Step 5: now the dev branch is redundant  
-`git branch -d dev`
+```
+git branch -d dev
+```
 
 Step 5: push  
-`git push origin main`
+```
+git push origin main
+```
 
 ## When the local branch is not syncing with remote branch
 Go to local feature branch  
-`git checkout feature` 
+```
+git checkout feature
+``` 
 
 This does the trick  
-`git reset --hard origin/feature`
+```
+git reset --hard origin/feature
+```
 
 ## Removing a branch both locally and remotely
 ```
 git branch -d feature
 git push origin --delete feature
 ```
+
 
