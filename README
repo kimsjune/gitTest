@@ -1,0 +1,21 @@
+# I wonder if this is really needed if the local branch is automatically called main.
+git branch -M main
+
+git remote add
+
+# This creates a remote (also called origin) "main" from my local main branch 
+git push -u origin main
+
+# I can create and load a local branch where I can make changes
+git checkout -b feature
+
+# Check which branch I am on
+git branch
+
+# This pushes my local feature branch into remote (origin) with the same branch name, feature.
+git push origin feature
+
+# I can change branches, which changes the committed files.
+git checkout main
+
+# This README is only visible from feature branch, not main (both locally, and remotely (origin))
