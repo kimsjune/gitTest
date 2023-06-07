@@ -31,17 +31,14 @@ git checkout main
 ```
 
 ## Merging
-To avoid git push -f origin main to sync remote to local, I have to use git merge.  
-`push -f` is not recommended when: 
+To avoid git push -f origin main to sync remote to local, I have to use git merge. `push -f` is not recommended when: 
 - repo is public, so other people might have pulled, which would break their connection with origin
 - commits might be deleted
 
-`push origin -f` is required when previously commited files are edited.  
-Adding a fresh new file has no effect because there is no conflict?   
-Git doesn't like it when local is different to remote. Which one is the "new" one?  
+`push origin -f` is required when previously commited files are edited. Adding a fresh new file has no effect because there is no conflict? 
+Git doesn't like it when local is different to remote. Which one is the "new" one? 
 Following best practice, I would have to create a new branch before every new addition/modification is made. Could be unrealistic... 
-What happens to files outside of terminal when I change branches? How would file explorer know which branch I am on?
-  
+What happens to files outside of terminal when I change branches? How would file explorer know which branch I am on? 
 The file explorer DOES know which branch I am on. Git is actually adding/removing files depending on which branch I am on. 
 But this could still get confusing. I would have to constantly check if I'm on the right branch when I look for files. 
 
@@ -76,14 +73,36 @@ git push origin main
 ```
 
 ## When the local branch is not syncing with remote branch
-Go to local feature branch  
+Go to local branch in question.  
 ```
 git checkout feature
 ``` 
 
-This does the trick  
+This does the trick. But be careful.    
 ```
 git reset --hard origin/feature
+```
+If local main is ahead of remote main, and I don't want to lose 
+any progress in local by `reset`, I can branch dev from local main, switch back to main, reset, pull, then merge/rebase dev.  
+```
+git status
+git checkout -b dev
+git checkout main
+git reset --hard main
+git pull origin main
+git checkout dev
+```
+Merging:  
+```
+git checkout main
+git merge dev
+```
+Rebasing:
+```
+git checkout dev
+git rebase main
+git checkout main
+git rebase dev
 ```
 
 ## Removing a branch both locally and remotely
@@ -93,8 +112,7 @@ git push origin --delete feature
 ```
 
 ## Rebase
-Trying to simulate the mechanics of `git rebase`.  
-The following script was run in a separte directory called gitTestCollaborator:  
+Trying to simulate the mechanics of `git rebase`. The following script was run in a separte directory called gitTestCollaborator:  
 ```
 git init
 git remote add origin https://github.com/kimsjune/gitTest
@@ -109,7 +127,7 @@ First make sure that the main is up-to-date.
 ```
 git pull origin main 
 ```
-Then go back to collab branch, and rebase to main. This moves the branch forward to the most recent origin/main.  
+Then go back to collab branch, and rebase to main. This moves the branch forward to the most recent origin/main. Immediately preceding `git pull` and the following two lines make sure that I'm rebasing from the most recent remote commit. 
 ```
 git checkout collab
 git rebase main
