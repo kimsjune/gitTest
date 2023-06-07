@@ -76,14 +76,36 @@ git push origin main
 ```
 
 ## When the local branch is not syncing with remote branch
-Go to local feature branch  
+Go to local branch in question.  
 ```
 git checkout feature
 ``` 
 
-This does the trick  
+This does the trick. But be careful.    
 ```
 git reset --hard origin/feature
+```
+If local main is ahead of remote main, and I don't want to lose 
+any progress in local by `reset`, I can branch dev from local main, switch back to main, reset, pull, then merge/rebase dev.  
+```
+git status
+git checkout -b dev
+git checkout main
+git reset --hard main
+git pull origin main
+git checkout dev
+```
+Merging:  
+```
+git checkout main
+git merge dev
+```
+Rebasing:
+```
+git checkout dev
+git rebase main
+git checkout main
+git rebase dev
 ```
 
 ## Removing a branch both locally and remotely
@@ -109,7 +131,7 @@ First make sure that the main is up-to-date.
 ```
 git pull origin main 
 ```
-Then go back to collab branch, and rebase to main. This moves the branch forward to the most recent origin/main.  
+Then go back to collab branch, and rebase to main. This moves the branch forward to the most recent origin/main. Immediately preceding `git pull` and the following two lines make sure that I'm rebasing from the most recent remote commit. 
 ```
 git checkout collab
 git rebase main
