@@ -31,17 +31,14 @@ git checkout main
 ```
 
 ## Merging
-To avoid git push -f origin main to sync remote to local, I have to use git merge.  
-`push -f` is not recommended when: 
+To avoid git push -f origin main to sync remote to local, I have to use git merge. `push -f` is not recommended when: 
 - repo is public, so other people might have pulled, which would break their connection with origin
 - commits might be deleted
 
-`push origin -f` is required when previously commited files are edited.  
-Adding a fresh new file has no effect because there is no conflict?   
-Git doesn't like it when local is different to remote. Which one is the "new" one?  
+`push origin -f` is required when previously commited files are edited. Adding a fresh new file has no effect because there is no conflict? 
+Git doesn't like it when local is different to remote. Which one is the "new" one? 
 Following best practice, I would have to create a new branch before every new addition/modification is made. Could be unrealistic... 
-What happens to files outside of terminal when I change branches? How would file explorer know which branch I am on?
-  
+What happens to files outside of terminal when I change branches? How would file explorer know which branch I am on? 
 The file explorer DOES know which branch I am on. Git is actually adding/removing files depending on which branch I am on. 
 But this could still get confusing. I would have to constantly check if I'm on the right branch when I look for files. 
 
@@ -115,8 +112,7 @@ git push origin --delete feature
 ```
 
 ## Rebase
-Trying to simulate the mechanics of `git rebase`.  
-The following script was run in a separte directory called gitTestCollaborator:  
+Trying to simulate the mechanics of `git rebase`. The following script was run in a separte directory called gitTestCollaborator:  
 ```
 git init
 git remote add origin https://github.com/kimsjune/gitTest
