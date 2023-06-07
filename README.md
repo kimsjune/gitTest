@@ -92,4 +92,32 @@ git branch -d feature
 git push origin --delete feature
 ```
 
+## Rebase
+Trying to simulate the mechanics of `git rebase`.  
+The following script was run in a separte directory called gitTestCollaborator:  
+```
+git init
+git remote add origin https://github.com/kimsjune/gitTest
+git pull origin main
+git checkout -b collab
+nano unique.txt
+git add . 
+git commit -m "First collab branch commit"
+git checkout main
+```
+First make sure that the main is up-to-date.  
+```
+git pull origin main 
+```
+Then go back to collab branch, and rebase to main. This moves the branch forward to the most recent origin/main.  
+```
+git checkout collab
+git rebase main
+```
+Now go back again to main to add collab. Push to origin/main.  
+```
+git checkout main
+git rebase collab
+git push origin main
+```
 
