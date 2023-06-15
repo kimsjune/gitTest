@@ -40,7 +40,12 @@ Git doesn't like it when local is different to remote. Which one is the "new" on
 Following best practice, I would have to create a new branch before every new addition/modification is made. Could be unrealistic... 
 What happens to files outside of terminal when I change branches? How would file explorer know which branch I am on? 
 The file explorer DOES know which branch I am on. Git is actually adding/removing files depending on which branch I am on. 
-But this could still get confusing. I would have to constantly check if I'm on the right branch when I look for files. 
+But this could still get confusing. I would have to constantly check if I'm on the right branch when I look for files.  
+
+EDIT: 06/15/23  
+Right after `git push origin main`, always do `git checkout dev` and avoid making changes to local main *ever*.  
+
+ 
 
 Step 1: create a new branch  
 ```
@@ -127,7 +132,7 @@ First make sure that the main is up-to-date.
 ```
 git pull origin main 
 ```
-Then go back to collab branch, and rebase to main. This moves the branch forward to the most recent origin/main. Immediately preceding `git pull` and the following two lines make sure that I'm rebasing from the most recent remote commit. 
+Then go back to collab branch, and rebase to main. This moves the branch forward to the most recent origin/main. The following two lines make sure that I'm rebasing from the most recent remote commit. 
 ```
 git checkout collab
 git rebase main
